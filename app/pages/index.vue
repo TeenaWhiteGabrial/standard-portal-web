@@ -21,6 +21,10 @@
           <h3 class="text-lg font-semibold text-purple-900 mb-2">用户系统</h3>
           <p class="text-purple-700">完整的登录退出功能，用户菜单和权限管理</p>
         </div>
+        <div class="bg-orange-50 p-6 rounded-lg">
+          <h3 class="text-lg font-semibold text-orange-900 mb-2">动态主题</h3>
+          <p class="text-orange-700">支持从接口动态获取主题配置，实现个性化定制</p>
+        </div>
       </div>
     </div>
 
@@ -54,15 +58,56 @@
         </div>
       </div>
     </div>
+
+    <!-- 主题演示链接 -->
+    <div class="bg-white rounded-lg shadow-md p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">主题配置系统</h2>
+      <p class="text-gray-600 mb-6">
+        本项目已集成完整的动态主题配置系统，支持从 API 接口动态获取主题色配置，
+        实现真正的个性化定制。主题配置包含完整的色彩体系，支持主题色、辅助色、
+        状态色等多种颜色配置。
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <NuxtLink 
+          to="/theme-demo" 
+          class="btn-primary"
+        >
+          查看主题演示
+        </NuxtLink>
+        <button 
+          @click="refreshTheme" 
+          class="btn-primary-outline"
+          :disabled="isRefreshing"
+        >
+          {{ isRefreshing ? '刷新中...' : '刷新主题' }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-    // 页面元数据
-    useHead({
-        title: '首页 - 标准门户',
-        meta: [
-            { name: 'description', content: '标准门户网站首页，提供政务公开、政务服务等功能' }
-        ]
-    })
+  // 页面元数据
+  useHead({
+    title: '首页 - 标准门户',
+    meta: [
+      { name: 'description', content: '标准门户网站首页，提供政务公开、政务服务等功能' }
+    ]
+  })
+
+  // 使用主题管理
+  const { fetchThemeConfig } = useTheme()
+  const isRefreshing = ref(false)
+
+  /**
+   * 刷新主题
+   */
+  const refreshTheme = async () => {
+    isRefreshing.value = true
+    try {
+      await fetchThemeConfig()
+    } finally {
+      isRefreshing.value = false
+    }
+  }
 </script>

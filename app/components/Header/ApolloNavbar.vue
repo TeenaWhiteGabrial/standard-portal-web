@@ -10,7 +10,7 @@
               src="/favicon.ico"
               alt="Logo"
             />
-            <span class="ml-2 text-xl font-bold text-gray-900">标准门户</span>
+            <span class="ml-2 text-xl font-bold text-neutral-900">标准门户</span>
           </NuxtLink>
         </div>
 
@@ -25,8 +25,8 @@
               @mouseleave="handleMouseLeave"
             >
               <button
-                class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center"
-                :class="{ 'text-blue-600': activeDropdown === item.name }"
+                class="text-neutral-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center"
+                :class="{ 'text-primary': activeDropdown === item.name }"
               >
                 {{ item.name }}
                 <svg
@@ -57,13 +57,13 @@
                     <NuxtLink
                       v-if="!child.children"
                       :to="child.href || '#'"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
                     >
                       {{ child.name }}
                     </NuxtLink>
                     <button
                       v-else
-                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center justify-between"
+                      class="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 flex items-center justify-between"
                     >
                       {{ child.name }}
                       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,13 +86,13 @@
                           <NuxtLink
                             v-if="!grandchild.children"
                             :to="grandchild.href || '#'"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
                           >
                             {{ grandchild.name }}
                           </NuxtLink>
                           <button
                             v-else
-                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center justify-between"
+                            class="w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 flex items-center justify-between"
                           >
                             {{ grandchild.name }}
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@
                                 v-for="item3 in grandchild.children"
                                 :key="item3.name"
                                 :to="item3.href || '#'"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
                               >
                                 {{ item3.name }}
                               </NuxtLink>
@@ -132,21 +132,21 @@
             <button
               v-if="!isLoggedIn"
               @click="handleLogin"
-              class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              class="btn-primary"
             >
               登录
             </button>
             <div v-else class="relative">
               <button
                 @click="toggleUserMenu"
-                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 <img
                   class="h-8 w-8 rounded-full"
                   :src="userInfo.avatar || '/favicon.ico'"
                   :alt="userInfo.name"
                 />
-                <span class="ml-2 text-gray-700">{{ userInfo.name }}</span>
+                <span class="ml-2 text-neutral-700">{{ userInfo.name }}</span>
               </button>
               
               <!-- 用户菜单下拉 -->
@@ -155,11 +155,11 @@
                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
               >
                 <div class="py-1">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">个人中心</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">设置</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">个人中心</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100">设置</a>
                   <button
                     @click="handleLogout"
-                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    class="block w-full text-left px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
                   >
                     退出登录
                   </button>
@@ -173,7 +173,7 @@
         <div class="md:hidden">
           <button
             @click="toggleMobileMenu"
-            class="bg-gray-200 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+            class="bg-neutral-200 inline-flex items-center justify-center p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
           >
             <svg
               class="h-6 w-6"
@@ -199,11 +199,11 @@
 
       <!-- 移动端菜单 -->
       <div v-if="showMobileMenu" class="md:hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-neutral-50">
           <div v-for="item in navigationItems" :key="item.name">
             <button
               @click="toggleMobileDropdown(item.name)"
-              class="w-full text-left text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              class="w-full text-left text-neutral-700 hover:text-neutral-900 block px-3 py-2 rounded-md text-base font-medium"
             >
               {{ item.name }}
             </button>
@@ -212,28 +212,28 @@
                 v-for="child in item.children"
                 :key="child.name"
                 :to="child.href || '#'"
-                class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-sm font-medium"
+                class="text-neutral-600 hover:text-neutral-900 block px-3 py-2 rounded-md text-sm font-medium"
               >
                 {{ child.name }}
               </NuxtLink>
             </div>
           </div>
-          <div class="pt-4 border-t border-gray-200">
+          <div class="pt-4 border-t border-neutral-200">
             <button
               v-if="!isLoggedIn"
               @click="handleLogin"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-base font-medium"
+              class="w-full btn-primary text-base"
             >
               登录
             </button>
             <div v-else>
               <div class="flex items-center px-3 py-2">
                 <img class="h-8 w-8 rounded-full" :src="userInfo.avatar || '/favicon.ico'" :alt="userInfo.name" />
-                <span class="ml-3 text-gray-700">{{ userInfo.name }}</span>
+                <span class="ml-3 text-neutral-700">{{ userInfo.name }}</span>
               </div>
               <button
                 @click="handleLogout"
-                class="w-full text-left text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-sm font-medium"
+                class="w-full text-left text-neutral-600 hover:text-neutral-900 block px-3 py-2 rounded-md text-sm font-medium"
               >
                 退出登录
               </button>
